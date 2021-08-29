@@ -178,6 +178,9 @@ public class SaoLei implements ActionListener {
         }
     }
 
+    /**
+     * 胜利
+     */
     private void checkWin() {
         int count = 0;
         for(int i=0; i<ROW; i++){
@@ -240,6 +243,8 @@ public class SaoLei implements ActionListener {
         btn.setBackground(Color.GREEN);
         btn.setText(data[i][j]+"");
 
+        addOpenCount();
+
         if(data[i][j] == 0){
             if (i>0 && j>0 && data[i-1][j-1] == 0) openCell(i-1, j-1);
             if (i>0 && data[i-1][j] == 0) openCell(i-1, j);
@@ -250,6 +255,16 @@ public class SaoLei implements ActionListener {
             if (i<19 && data[i+1][j] == 0) openCell(i+1, j);
             if (i<19 && j<19 && data[i+1][j+1] == 0) openCell(i+1, j+1);
         }
+    }
+
+    /**
+     * 已开和未开格子的计数
+     */
+    private void addOpenCount() {
+        opened++;
+        unopened--;
+        label1.setText("待开："+unopened);
+        label2.setText("已开："+opened);
     }
 
 
