@@ -151,14 +151,35 @@ public class SaoLei implements ActionListener {
         for(int i=0; i<ROW; i++){
             for(int j=0; j<COL; j++){
                 if(btn.equals(btns[i][j])){
-                    btn.setIcon(null);
-                    btn.setEnabled(false);
-                    btn.setOpaque(true); // 设置透明 才能显示自己设置的颜色
-                    btn.setBackground(Color.GREEN);
-                    btn.setText(data[i][j]+"");
+                    openCell(i,j);
                     return;
                 }
             }
         }
     }
+
+    public void openCell(int i, int j){
+        JButton btn = btns[i][j];
+        if(!btn.isEnabled())
+            return;
+
+        btn.setIcon(null);
+        btn.setEnabled(false);
+        btn.setOpaque(true); // 设置透明 才能显示自己设置的颜色
+        btn.setBackground(Color.GREEN);
+        btn.setText(data[i][j]+"");
+
+        if(data[i][j] == 0){
+            if (i>0 && j>0 && data[i-1][j-1] == 0) openCell(i-1, j-1);
+            if (i>0 && data[i-1][j] == 0) openCell(i-1, j);
+            if (i>0 && j<19 && data[i-1][j+1] == 0) openCell(i-1, j+1);
+            if (j>0 && data[i][j-1] == 0) openCell(i, j-1);
+            if (j<19 && data[i][j+1] == 0) openCell(i, j+1);
+            if (i<19 && j>0 && data[i+1][j-1] == 0) openCell(i+1, j-1);
+            if (i<19 && data[i+1][j] == 0) openCell(i+1, j);
+            if (i<19 && j<19 && data[i+1][j+1] == 0) openCell(i+1, j+1);
+        }
+    }
+
+
 }
