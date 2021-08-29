@@ -3,9 +3,12 @@ package jhSaoLei;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
 
-public class SaoLei {
+public class SaoLei implements ActionListener {
     JFrame frame = new JFrame();
 
     // 头部按钮
@@ -24,7 +27,7 @@ public class SaoLei {
     int COL = 20; //列数
     int[][] data = new int[ROW][COL];//存放数据
     JButton[][] btns = new JButton[ROW][COL];
-    int LEICOUNT = 3; //雷的总数
+    int LEICOUNT = 30; //雷的总数
     int LEICODE = -1; //表示是雷
 
     int unopened = ROW * COL; //未开格子数
@@ -37,17 +40,51 @@ public class SaoLei {
 
 
     public SaoLei(){
-        frame.setSize(600,700);
-        frame.setResizable(false);
+        frame.setSize(700,800);
+        frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setHeader();
+
+        addLei();
+
         setButtons();
 
 
         frame.setVisible(true);
     }
 
+    // 埋雷
+    private void addLei() {
+        Random rand = new Random();
+        for (int i=0; i<LEICOUNT; ){
+            int r = rand.nextInt(ROW);
+            int c = rand.nextInt(COL);
+            if (data[r][c] != LEICODE){
+                data[r][c] = LEICODE;
+                i++;
+            }
+        }
+
+        //计算周边雷的数量
+        for (int i=0;i<ROW;i++){
+            for(int j=0; j<COL; j++){
+                if(data[i][j] == LEICODE) continue;
+                int tempCount = 0;
+                if (i>0 && j>0 && data[i-1][j-1] == LEICODE) tempCount++;
+                if (i>0 && data[i-1][j] == LEICODE) tempCount++;
+                if (i>0 && j<19 && data[i-1][j+1] == LEICODE) tempCount++;
+                if (j>0 && data[i][j-1] ==  LEICODE) tempCount++;
+                if (j<19 && data[i][j+1] == LEICODE) tempCount++;
+                if (i<19 && j>0 && data[i+1][j-1] == LEICODE) tempCount++;
+                if (i<19 && data[i+1][j] == LEICODE) tempCount++;
+                if (i<19 && j<19 && data[i+1][j+1] == LEICODE) tempCount++;
+                data[i][j] = tempCount;
+            }
+        }
+    }
+
+    // 在游戏界面添加按钮
     private void setButtons() {
         Container con = new Container();
         con.setLayout(new GridLayout(ROW, COL));
@@ -55,8 +92,12 @@ public class SaoLei {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
                 JButton btn = new JButton(guessIcon);
+//                JButton btn = new JButton(data[i][j] + "");
+//                System.out.println(btn);
+                btn.addActionListener(this);
                 con.add(btn);
                 btns[i][j]=btn;
+//                System.out.println(btns[i][j]);
             }
         }
 
@@ -64,6 +105,7 @@ public class SaoLei {
 
     }
 
+    // 添加头部说明信息
     private void setHeader(){
         JPanel panel = new JPanel(new GridBagLayout());
 
@@ -103,5 +145,20 @@ public class SaoLei {
     }
 
 
-
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton btn = (JButton)e.getSource();
+        for(int i=0; i<ROW; i++){
+            for(int j=0; j<COL; j++){
+                if(btn.equals(btns[i][j])){
+                    btn.setIcon(null);
+                    btn.setEnabled(false);
+                    btn.setOpaque(true); // 设置透明 才能显示自己设置的颜色
+                    btn.setBackground(Color.GREEN);
+                    btn.setText(data[i][j]+"");
+                    return;
+                }
+            }
+        }
+    }
 }

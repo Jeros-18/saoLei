@@ -47,7 +47,7 @@
       <recent name="D:\ProgramFiles\暑期实践\jaSaoLei\src\other" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SaoLei">
     <configuration name="SaoLei" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="jhSaoLei.SaoLei" />
       <module name="jaSaoLei" />
@@ -61,9 +61,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Study" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="other.Study" />
+      <module name="jaSaoLei" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="other.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.SaoLei" />
+        <item itemvalue="Application.Study" />
       </list>
     </recent_temporary>
   </component>
@@ -77,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1630224105588</updated>
-      <workItem from="1630224110661" duration="4571000" />
+      <workItem from="1630224110661" duration="9637000" />
     </task>
     <servers />
   </component>
@@ -88,21 +102,25 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="79" key="GridCell.Tab.0.bottom" timestamp="1630228817258">
+    <state x="574" y="142" key="#com.intellij.ide.util.MemberChooser" timestamp="1630234499009">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="79" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1630228817258" />
-    <state width="1493" height="79" key="GridCell.Tab.0.center" timestamp="1630228817258">
+    <state x="574" y="142" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1630234499009" />
+    <state width="1493" height="200" key="GridCell.Tab.0.bottom" timestamp="1630234673735">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="79" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1630228817258" />
-    <state width="1493" height="79" key="GridCell.Tab.0.left" timestamp="1630228817258">
+    <state width="1493" height="200" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1630234673735" />
+    <state width="1493" height="200" key="GridCell.Tab.0.center" timestamp="1630234673735">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="79" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1630228817258" />
-    <state width="1493" height="79" key="GridCell.Tab.0.right" timestamp="1630228817258">
+    <state width="1493" height="200" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1630234673735" />
+    <state width="1493" height="200" key="GridCell.Tab.0.left" timestamp="1630234673735">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="79" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1630228817258" />
+    <state width="1493" height="200" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1630234673735" />
+    <state width="1493" height="200" key="GridCell.Tab.0.right" timestamp="1630234673735">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1630234673735" />
   </component>
 </project>
