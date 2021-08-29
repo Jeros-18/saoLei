@@ -166,11 +166,40 @@ public class SaoLei implements ActionListener {
         for(int i=0; i<ROW; i++){
             for(int j=0; j<COL; j++){
                 if(btn.equals(btns[i][j])){
-                    openCell(i,j);
+                    if (data[i][j] == LEICODE){
+                        lose();
+                    }else{
+                        openCell(i,j);
+                    }
                     return;
                 }
             }
         }
+    }
+
+    /**
+     * 踩雷
+     */
+    private void lose() {
+        bannerBtn.setIcon(failIcon);
+        for(int i=0; i<ROW; i++){
+            for(int j=0; j<COL; j++){
+                if(btns[i][j].isEnabled()){
+                    JButton btn = btns[i][j];
+                    if(data[i][j] == LEICODE){
+                        btn.setEnabled(false);
+                        btn.setIcon(bombIcon);
+                        btn.setDisabledIcon(bombIcon);
+                    }else{
+                        btn.setIcon(null);
+                        btn.setEnabled(false);
+                        btn.setOpaque(true);
+                        btn.setText(data[i][j]+"");
+                    }
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(frame,"可惜!你踩雷了!！\n可以点击上面的Banner重新开始。","踩雷啦",JOptionPane.PLAIN_MESSAGE);
     }
 
     /**
