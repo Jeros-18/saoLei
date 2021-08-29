@@ -125,6 +125,8 @@ public class SaoLei implements ActionListener {
         GridBagConstraints c1 = new GridBagConstraints(0,0,3,1,1.0,1.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0,0,0,0), 0,0);
         panel.add(bannerBtn, c1); // 放置头部按钮
 
+        bannerBtn.addActionListener(this); // 重新开始游戏
+
         label1.setOpaque(true);
         label1.setBackground(Color.white);
         label1.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
@@ -173,6 +175,13 @@ public class SaoLei implements ActionListener {
         }
 
         JButton btn = (JButton)e.getSource();
+
+        // 重新开始游戏
+        if (btn.equals(bannerBtn)){
+            restart();
+            return;
+        }
+
         for(int i=0; i<ROW; i++){
             for(int j=0; j<COL; j++){
                 if(btn.equals(btns[i][j])){
@@ -186,6 +195,36 @@ public class SaoLei implements ActionListener {
                 }
             }
         }
+    }
+
+    /**
+     * 重新开始
+     * 1.数据清零
+     * 2.给按钮回复状态
+     * 3.重新启动时钟
+     */
+    private void restart() {
+        // 回复数据和按钮
+        for(int i=0; i<ROW; i++){
+            for(int j=0; j<COL; j++){
+                data[i][j]=0;
+
+                btns[i][j].setBackground(new Color(244,183,113));
+                btns[i][j].setEnabled(true);
+                btns[i][j].setText("");
+                btns[i][j].setIcon(guessIcon);
+            }
+        }
+        //状态栏恢复
+        unopened = ROW*COL;
+        opened = 0;
+        seconds = 0;
+        label1.setText("待开"+unopened);
+        label2.setText("已开"+opened);
+        label3.setText("用时"+seconds+"s");
+
+        addLei();
+        timer.start();
     }
 
     /**
