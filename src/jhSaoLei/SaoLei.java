@@ -36,6 +36,7 @@ public class SaoLei implements ActionListener {
     JLabel label1 = new JLabel("待开：" + unopened);
     JLabel label2 = new JLabel("已开：" + opened);
     JLabel label3 = new JLabel("用时：" + seconds + "s");
+    Timer timer = new Timer(1000, this);
 
 
 
@@ -50,6 +51,7 @@ public class SaoLei implements ActionListener {
 
         setButtons();
 
+        timer.start();
 
         frame.setVisible(true);
     }
@@ -162,6 +164,14 @@ public class SaoLei implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        // 记录时间
+        if(e.getSource() instanceof Timer){
+            seconds++;
+            label3.setText("用时： "+seconds+"s");
+            timer.start();
+            return;
+        }
+
         JButton btn = (JButton)e.getSource();
         for(int i=0; i<ROW; i++){
             for(int j=0; j<COL; j++){
@@ -190,6 +200,7 @@ public class SaoLei implements ActionListener {
             }
         }
         if(count==LEICOUNT){
+            timer.stop();
             for(int i=0; i<ROW; i++){
                 for(int j=0; j<COL; j++){
                     if(btns[i][j].isEnabled()){
@@ -206,6 +217,7 @@ public class SaoLei implements ActionListener {
      * 踩雷
      */
     private void lose() {
+        timer.stop();
         bannerBtn.setIcon(failIcon);
         for(int i=0; i<ROW; i++){
             for(int j=0; j<COL; j++){
