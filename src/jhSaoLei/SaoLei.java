@@ -54,7 +54,9 @@ public class SaoLei implements ActionListener {
         frame.setVisible(true);
     }
 
-    // 埋雷
+    /**
+     * 埋雷
+     */
     private void addLei() {
         Random rand = new Random();
         for (int i=0; i<LEICOUNT; ){
@@ -84,7 +86,9 @@ public class SaoLei implements ActionListener {
         }
     }
 
-    // 在游戏界面添加按钮
+    /**
+     * 在游戏界面添加按钮
+     */
     private void setButtons() {
         Container con = new Container();
         con.setLayout(new GridLayout(ROW, COL));
@@ -94,7 +98,12 @@ public class SaoLei implements ActionListener {
                 JButton btn = new JButton(guessIcon);
 //                JButton btn = new JButton(data[i][j] + "");
 //                System.out.println(btn);
-                btn.addActionListener(this);
+
+                // 给所有格子添加背景色
+                btn.setOpaque(true);
+                btn.setBackground(new Color(244,183,113));
+
+                btn.addActionListener(this);  // 格子展开
                 con.add(btn);
                 btns[i][j]=btn;
 //                System.out.println(btns[i][j]);
@@ -105,7 +114,9 @@ public class SaoLei implements ActionListener {
 
     }
 
-    // 添加头部说明信息
+    /**
+     * 添加头部说明信息
+     */
     private void setHeader(){
         JPanel panel = new JPanel(new GridBagLayout());
 
@@ -145,6 +156,10 @@ public class SaoLei implements ActionListener {
     }
 
 
+    /**
+     * 格子展开
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton)e.getSource();
@@ -158,6 +173,11 @@ public class SaoLei implements ActionListener {
         }
     }
 
+    /**
+     * 级联展开
+     * @param i
+     * @param j
+     */
     public void openCell(int i, int j){
         JButton btn = btns[i][j];
         if(!btn.isEnabled())
