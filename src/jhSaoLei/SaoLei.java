@@ -10,6 +10,13 @@ public class SaoLei {
 
     // 头部按钮
     ImageIcon bannerIcon = new ImageIcon("banner.png");
+    // 内部按钮
+    ImageIcon guessIcon = new ImageIcon("guess.png");
+    ImageIcon bombIcon = new ImageIcon("bomb.png");
+    ImageIcon failIcon = new ImageIcon("fail.png");
+    ImageIcon winIcon = new ImageIcon("win.png");
+    ImageIcon winFlagIcon = new ImageIcon("win_flag.png");
+
     JButton bannerBtn = new JButton(bannerIcon);
 
     //数据结构
@@ -35,8 +42,26 @@ public class SaoLei {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setHeader();
+        setButtons();
+
 
         frame.setVisible(true);
+    }
+
+    private void setButtons() {
+        Container con = new Container();
+        con.setLayout(new GridLayout(ROW, COL));
+
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                JButton btn = new JButton(guessIcon);
+                con.add(btn);
+                btns[i][j]=btn;
+            }
+        }
+
+        frame.add(con, BorderLayout.CENTER);
+
     }
 
     private void setHeader(){
