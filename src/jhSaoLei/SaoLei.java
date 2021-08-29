@@ -27,7 +27,7 @@ public class SaoLei implements ActionListener {
     int COL = 20; //列数
     int[][] data = new int[ROW][COL];//存放数据
     JButton[][] btns = new JButton[ROW][COL];
-    int LEICOUNT = 30; //雷的总数
+    int LEICOUNT = 3; //雷的总数
     int LEICODE = -1; //表示是雷
 
     int unopened = ROW * COL; //未开格子数
@@ -170,10 +170,32 @@ public class SaoLei implements ActionListener {
                         lose();
                     }else{
                         openCell(i,j);
+                        checkWin();
                     }
                     return;
                 }
             }
+        }
+    }
+
+    private void checkWin() {
+        int count = 0;
+        for(int i=0; i<ROW; i++){
+            for(int j=0; j<COL; j++){
+                if(btns[i][j].isEnabled())
+                    count++;
+            }
+        }
+        if(count==LEICOUNT){
+            for(int i=0; i<ROW; i++){
+                for(int j=0; j<COL; j++){
+                    if(btns[i][j].isEnabled()){
+                        btns[i][j].setIcon(winFlagIcon);
+                    }
+                }
+            }
+            bannerBtn.setIcon(winIcon);
+            JOptionPane.showMessageDialog(frame,"你赢了！！\n点击banner重新开始","赢了",JOptionPane.PLAIN_MESSAGE);
         }
     }
 
